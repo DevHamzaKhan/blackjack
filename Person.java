@@ -20,7 +20,7 @@ public class Person {
     int aces = 0;
     for (Card card : hand) {
       total += card.getValue();
-      if (card.getRank().equals("Ace")) {
+      if (card.getRank().equals("A")) {
         aces++;
       }
     }

@@ -10,8 +10,8 @@ public class Deck {
 
   public void createFullDeck() {
     this.cards.clear();
-    String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
-    String[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+    String[] suits = { "♥", "♦", "♣", "♠" };
+    String[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
     int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
 
     for (String suit : suits) {
