@@ -30,7 +30,7 @@ class Person {
   + getHandTotal(): int
   + clearHand()
   + isBusted(): boolean
-  + getHandAsString(boolean): String
+  + getHand(boolean): String
 }
 
 class Player extends Person {

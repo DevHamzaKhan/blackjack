@@ -60,10 +60,10 @@ public class GameController {
       // everyone who wants one gets a card, ask again.
       while (true) {
         // 3) Show players’ cards and total all the time.
-        System.out.println("Your hand: " + player.getHandAsString(true) + " (" + player.getHandTotal() + ")");
+        System.out.println("Your hand: " + player.getHand(true) + " (" + player.getHandTotal() + ")");
 
         // 4) Show the dealer's cards face down. ( or one card and other face down).p
-        System.out.println("Dealer's hand: " + dealer.getHandAsString(false));
+        System.out.println("Dealer's hand: " + dealer.getHand(false));
 
         if (player.isBusted()) {
           System.out.println("You busted! Your hand total is " + player.getHandTotal());
@@ -86,7 +86,7 @@ public class GameController {
         if (response == 1) {
           player.addCard(playingDeck.dealCard());
           if (player.isBusted()) {
-            System.out.println("Your hand: " + player.getHandAsString(true) + " (" + player.getHandTotal() + ")");
+            System.out.println("Your hand: " + player.getHand(true) + " (" + player.getHandTotal() + ")");
             System.out.println("You busted!");
             endRound = true;
             break;
@@ -102,7 +102,7 @@ public class GameController {
       }
 
       // 5) Show dealer cards and cards’ total when the game is over.
-      System.out.println("Dealer's cards: " + dealer.getHandAsString(true) + " (" + dealer.getHandTotal() + ")");
+      System.out.println("Dealer's cards: " + dealer.getHand(true) + " (" + dealer.getHandTotal() + ")");
 
       // 14) Don’t ask the dealer to hit or stand; use casino rules (hit 16 or below,
       // stand at 17+).

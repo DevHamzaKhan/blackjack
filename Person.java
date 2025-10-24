@@ -41,18 +41,18 @@ public class Person {
     return getHandTotal() > 21;
   }
 
-  public String getHandAsString(boolean showAllCards) {
-    StringBuilder sb = new StringBuilder();
+  public String getHand(boolean showAllCards) {
+    String result = "";
     for (int i = 0; i < hand.size(); i++) {
       if (i == 0 && !showAllCards) {
-        sb.append("[Card is face down]");
+        result += "[Card is face down]";
       } else {
-        sb.append(hand.get(i).toString());
+        result += hand.get(i).toString();
       }
       if (i < hand.size() - 1) {
-        sb.append(", ");
+        result += ", ";
       }
     }
-    return sb.toString();
+    return result;
   }
 }
