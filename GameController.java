@@ -30,6 +30,7 @@ public class GameController {
     scanner.nextLine();
     System.out.println(playingDeck);
 
+    // Keep starting rounds as long as the player has money left
     while (player.getMoney() > 0) {
       // 11) Ask players how much money they are willing to risk and update the amount
       // according to winning or losing (optional).
@@ -85,6 +86,7 @@ public class GameController {
         System.out.println("Would you like to (1)Hit or (2)Stand?");
         int response = scanner.nextInt();
 
+        // Hit
         if (response == 1) {
           player.addCard(playingDeck.dealCard());
           if (player.isBusted()) {
@@ -95,6 +97,7 @@ public class GameController {
           }
         }
 
+        // Stand
         if (response == 2) {
           // 15) If the player picked a "stand" - don’t ask (hit or stand?) again - the
           // player cannot hit after standing.
@@ -103,17 +106,21 @@ public class GameController {
         }
       }
 
+      // Player's inputs are over, now dealer automatically plays until round is over 
+
       // 5) Show dealer cards and cards’ total when the game is over.
       System.out.println("Dealer's cards: " + dealer.getHand(true) + " (" + dealer.getHandTotal() + ")");
 
       // 14) Don’t ask the dealer to hit or stand; use casino rules (hit 16 or below,
       // stand at 17+).
+      // !endRound skips this if user has busted or hit a blackjack
       while (dealer.getHandTotal() < 17 && !endRound) {
         dealer.addCard(playingDeck.dealCard());
         System.out.println("Dealer hits and gets: " + dealer.getHand().get(dealer.getHand().size() - 1));
         System.out.println("Dealer's total is now: " + dealer.getHandTotal());
       }
 
+      // Condition where dealer has busted and user has stood at < 21
       if (dealer.isBusted() && !endRound) {
         System.out.println("Dealer busts! You win!");
         player.setMoney(player.getMoney() + player.getBet());
@@ -130,14 +137,17 @@ public class GameController {
         // 10) Every time a player or dealer wins – display a joke from the Joke class.
         System.out.println(Jokes.nextJoke());
         endRound = true;
-      } else if (!endRound) {
+      }
+
+      // Compare hand totals if neither players have busted (and player has not hit 21)
+      else if (!endRound) {
         if (player.getHandTotal() > dealer.getHandTotal()) {
           System.out.println("You win the hand!");
           player.setMoney(player.getMoney() + player.getBet());
           // 10) Every time a player or dealer wins – display a joke from the Joke class.
           System.out.println(Jokes.nextJoke());
         } else if (player.getHandTotal() == dealer.getHandTotal()) {
-          System.out.println("Push.");
+          System.out.println("Tie.");
         } else {
           System.out.println("You lose the hand.");
           player.setMoney(player.getMoney() - player.getBet());
