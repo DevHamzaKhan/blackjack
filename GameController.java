@@ -15,12 +15,17 @@ public class GameController {
     playingDeck.createFullDeck();
 
     // 1) Print a deck of cards at the beginning of the game (for Ms. Strelkovska).
-    System.out.println("\nHere is the deck:");
+    scanner.nextLine();
+    System.out.print("\nPress Enter to view deck...");
+    scanner.nextLine();
+    System.out.println("Here is the deck:");
     System.out.println(playingDeck);
 
     // 2) Shuffle and print the deck again (for Ms. Strelkovska).
     playingDeck.shuffle();
     System.out.println("\nDeck has been shuffled.");
+    System.out.print("Press Enter to view shuffled deck...");
+    scanner.nextLine();
     System.out.println(playingDeck);
 
     while (player.getMoney() > 0) {
@@ -144,7 +149,10 @@ public class GameController {
       player.resetStand();
 
       // 6) Display the deck after every round (for Ms. Strelkovska).
-      System.out.println("\nEnd of round deck:");
+      scanner.nextLine();
+      System.out.print("\nPress Enter to view end of round deck...");
+      scanner.nextLine();
+      System.out.println("End of round deck:");
       System.out.println(playingDeck);
 
       System.out.println("You now have $" + player.getMoney());
