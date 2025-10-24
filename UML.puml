@@ -1,0 +1,65 @@
+@startuml
+class GameController {
+  {static} + main(String[]): void
+}
+
+class Deck {
+  - java.util.ArrayList<Card> cards
+  + createFullDeck()
+  + shuffle()
+  + dealCard(): Card
+  + cardsLeft(): int
+  + toString(): String
+}
+
+class Card {
+  - String suit
+  - String rank
+  - int value
+  + getSuit(): String
+  + getRank(): String
+  + getValue(): int
+  + setValue(int)
+  + toString(): String
+}
+
+class Person {
+  - java.util.ArrayList<Card> hand
+  + getHand(): java.util.ArrayList<Card>
+  + addCard(Card)
+  + getHandTotal(): int
+  + clearHand()
+  + isBusted(): boolean
+  + getHandAsString(boolean): String
+}
+
+class Player extends Person {
+  - double money
+  - double bet
+  - boolean isStanding
+  + getMoney(): double
+  + setMoney(double)
+  + getBet(): double
+  + setBet(double)
+  + isStanding(): boolean
+  + stand()
+  + resetStand()
+}
+
+class Dealer extends Person
+
+class Jokes {
+  {static} - java.util.ArrayList<String> jokes
+  {static} + loadJokes()
+  {static} + nextJoke(): String
+}
+
+Deck "1" o-- "*" Card
+Person "1" o-- "*" Card
+Player --|> Person
+Dealer --|> Person
+GameController ..> Deck
+GameController ..> Player
+GameController ..> Dealer
+GameController ..> Jokes
+@enduml
