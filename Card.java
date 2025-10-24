@@ -1,3 +1,5 @@
+// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Playing card model
+
 public class Card {
   private String suit;
   private String rank;

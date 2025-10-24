@@ -1,3 +1,5 @@
+// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Main game loop and console I/O
+
 import java.util.Scanner;
 
 public class GameController {

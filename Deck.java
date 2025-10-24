@@ -1,5 +1,7 @@
+// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Standard 52-card deck
+
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collections;
 
 public class Deck {
   private ArrayList<Card> cards;
@@ -22,16 +24,7 @@ public class Deck {
   }
 
   public void shuffle() {
-    ArrayList<Card> tempDeck = new ArrayList<Card>();
-    Random random = new Random();
-    int randomCardIndex = 0;
-    int originalSize = this.cards.size();
-    for (int i = 0; i < originalSize; i++) {
-      randomCardIndex = random.nextInt(this.cards.size());
-      tempDeck.add(this.cards.get(randomCardIndex));
-      this.cards.remove(randomCardIndex);
-    }
-    this.cards = tempDeck;
+    Collections.shuffle(this.cards);
   }
 
   public Card dealCard() {

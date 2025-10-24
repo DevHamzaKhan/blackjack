@@ -1,3 +1,5 @@
+// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Static joke provider class
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -8,7 +10,7 @@ public class Jokes {
   private static ArrayList<String> jokes = new ArrayList<String>();
 
   public static void loadJokes() {
-    jokes.clear();
+    jokes = new ArrayList<>();
     try {
       File jokesFile = new File("jokes.txt");
       Scanner fileReader = new Scanner(jokesFile);

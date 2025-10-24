@@ -1,3 +1,5 @@
+// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Human player state and bets
+
 public class Player extends Person {
   private double money;
   private double bet;

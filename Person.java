@@ -1,3 +1,5 @@
+// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Hand holder and scoring logic
+
 import java.util.ArrayList;
 
 public class Person {
