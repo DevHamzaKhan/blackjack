@@ -97,7 +97,6 @@ public class GameController {
       }
 
       // 5) Show dealer cards and cards’ total when the game is over.
-      // 9) Show dealer’s cards and cards’ total when the game is over.
       System.out.println("Dealer's cards: " + dealer.getHandAsString(true) + " (" + dealer.getHandTotal() + ")");
 
       // 14) Don’t ask the dealer to hit or stand; use casino rules (hit 16 or below,
@@ -148,7 +147,7 @@ public class GameController {
       System.out.println("\nEnd of round deck:");
       System.out.println(playingDeck);
 
-  System.out.println("You now have $" + player.getMoney());
+      System.out.println("You now have $" + player.getMoney());
 
       // 7) Ask if the user would like to play again.
       System.out.println("Play again? (y/n)");

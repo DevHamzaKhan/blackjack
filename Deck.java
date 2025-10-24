@@ -42,7 +42,6 @@ public class Deck {
     return cards.size();
   }
 
-  @Override
   public String toString() {
     String cardListOutput = "";
     for (Card aCard : this.cards) {
