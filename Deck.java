@@ -47,6 +47,7 @@ public class Deck {
     for (Card aCard : this.cards) {
       cardListOutput += "\n " + aCard.toString();
     }
+    cardListOutput += "\nTotal cards: " + this.cards.size();
     return cardListOutput;
   }
 }
