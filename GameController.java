@@ -68,18 +68,30 @@ public class GameController {
         // 4) Show the dealer's cards face down. ( or one card and other face down).p
         System.out.println("Dealer's hand: " + dealer.getHand(false));
 
+        // Natural blackjack check
+        if (player.getHandTotal() == 21 && player.getHand().size() == 2) {
+          if (dealer.getHandTotal() == 21 && dealer.getHand().size() == 2) {
+            System.out.println("Both you and the dealer have blackjack. Tie.");
+          } else {
+            System.out.println("Blackjack! You win!");
+            player.setMoney(player.getMoney() + player.getBet());
+            // 10) Every time a player or dealer wins – display a joke from the Joke class.
+            System.out.println(Jokes.nextJoke());
+          }
+          endRound = true;
+          break;
+        }
+
         if (player.isBusted()) {
           System.out.println("You busted! Your hand total is " + player.getHandTotal());
           endRound = true;
           break;
         }
 
-        if (player.getHandTotal() == 21) {
-          System.out.println("Blackjack! You win!");
-          player.setMoney(player.getMoney() + player.getBet());
-          // 10) Every time a player or dealer wins – display a joke from the Joke class.
-          System.out.println(Jokes.nextJoke());
-          endRound = true;
+        // If player reaches 21 via hits, stop asking and let dealer play
+        if (player.getHandTotal() == 21 && player.getHand().size() > 2) {
+          System.out.println("You have 21.");
+          player.stand();
           break;
         }
 
