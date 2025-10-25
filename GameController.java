@@ -160,14 +160,14 @@ public class GameController {
       dealer.clearHand();
       player.resetStand();
 
+      System.out.println("You now have $" + player.getMoney());
+
       // 6) Display the deck after every round (for Ms. Strelkovska).
       scanner.nextLine();
       System.out.print("\nPress Enter to view end of round deck...");
       scanner.nextLine();
       System.out.println("End of round deck:");
       System.out.println(playingDeck);
-
-      System.out.println("You now have $" + player.getMoney());
 
       // 7) Ask if the user would like to play again.
       System.out.println("Play again? (y/n)");
