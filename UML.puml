@@ -2,6 +2,7 @@
 
 class Deck {
   - java.util.ArrayList<Card> cards
+  + Deck()
   + createFullDeck(): void
   + shuffle(): void
   + dealCard(): Card
@@ -13,37 +14,42 @@ class Card {
   - String suit
   - String rank
   - int value
+  + Card(String suit, String rank, int value)
   + getSuit(): String
   + getRank(): String
   + getValue(): int
-  + setValue(int): void
+  + setValue(int value): void
   + toString(): String
 }
 
 class Person {
   - java.util.ArrayList<Card> hand
+  + Person()
   + getHand(): java.util.ArrayList<Card>
-  + addCard(Card): void
+  + addCard(Card card): void
   + getHandTotal(): int
   + clearHand(): void
   + isBusted(): boolean
-  + getHand(boolean): String
+  + getHand(boolean showAllCards): String
 }
 
 class Player extends Person {
   - double money
   - double bet
   - boolean isStanding
+  + Player(double money)
   + getMoney(): double
-  + setMoney(double): void
+  + setMoney(double money): void
   + getBet(): double
-  + setBet(double): void
+  + setBet(double bet): void
   + isStanding(): boolean
   + stand(): void
   + resetStand(): void
 }
 
-class Dealer extends Person
+class Dealer extends Person {
+  + Dealer()
+}
 
 class Jokes {
   {static} - java.util.ArrayList<String> jokes
