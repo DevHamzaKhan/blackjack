@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 public class BlackJackGame {
   public static void main(String[] args) {
+    System.out.println("WELCOME TO THE BLACKJACK JAVA GAME");
+    System.out.println("===================================\n");
+    
     Scanner sc = new Scanner(System.in);
     
     // Setup game
