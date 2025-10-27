@@ -1,7 +1,7 @@
 // File Name: Jokes.java
 // Author: Hamza Khan
 // Date: 2025-10-23
-// Description: Static joke provider class
+// Description: Loads and provides random jokes from file on demand
 
 import java.util.*;
 import java.io.*;

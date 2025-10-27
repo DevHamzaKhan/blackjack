@@ -1,7 +1,7 @@
 // File Name: Person.java
 // Author: Hamza Khan
 // Date: 2025-10-23
-// Description: Hand holder and scoring logic
+// Description: Manages card hand, calculates totals with ace adjustment, and checks bust status
 
 import java.util.*;
 

@@ -1,7 +1,7 @@
 // File Name: Card.java
 // Author: Hamza Khan
 // Date: 2025-10-23
-// Description: Playing card model
+// Description: Represents a playing card with suit, rank, and blackjack value
 
 public class Card {
   private String suit;

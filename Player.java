@@ -1,7 +1,7 @@
 // File Name: Player.java
 // Author: Hamza Khan
 // Date: 2025-10-23
-// Description: Human player state and bets
+// Description: Tracks player money, bet amounts, and standing status during gameplay
 
 public class Player extends Person {
   private boolean isStanding;

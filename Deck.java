@@ -1,7 +1,7 @@
 // File Name: Deck.java
 // Author: Hamza Khan
 // Date: 2025-10-23
-// Description: Standard 52-card deck
+// Description: Manages deck creation, shuffling, and card dealing operations
 
 import java.util.*;
 
