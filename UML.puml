@@ -3,11 +3,12 @@
 class Deck {
   - java.util.ArrayList<Card> cards
   + Deck()
-  + createFullDeck(): void
-  + shuffle(): void
-  + dealCard(): Card
   + cardsLeft(): int
+  + dealCard(): Card
+  + shuffle(): void
+  + createFullDeck(): void
   + toString(): String
+  - addCardsForSuit(String suit, String[] ranks, int[] values): void
 }
 
 class Card {
@@ -25,26 +26,30 @@ class Card {
 class Person {
   - java.util.ArrayList<Card> hand
   + Person()
-  + getHand(): java.util.ArrayList<Card>
   + addCard(Card card): void
-  + getHandTotal(): int
   + clearHand(): void
+  + getHand(): java.util.ArrayList<Card>
   + isBusted(): boolean
+  + getHandTotal(): int
   + getHand(boolean showAllCards): String
+  - calculateRawTotal(): int
+  - adjustForAces(int total): int
+  - countAces(): int
+  - formatCard(int index, boolean showAll): String
 }
 
 class Player extends Person {
-  - double money
-  - double bet
   - boolean isStanding
+  - double bet
+  - double money
   + Player(double money)
-  + getMoney(): double
-  + setMoney(double money): void
+  + stand(): void
+  + isStanding(): boolean
+  + resetStand(): void
   + getBet(): double
   + setBet(double bet): void
-  + isStanding(): boolean
-  + stand(): void
-  + resetStand(): void
+  + getMoney(): double
+  + setMoney(double money): void
 }
 
 class Dealer extends Person {
@@ -52,9 +57,13 @@ class Dealer extends Person {
 }
 
 class Jokes {
-  {static} - java.util.ArrayList<String> jokes
-  {static} + loadJokes(): void
+  {static} - java.util.ArrayList<String> jokeList
   {static} + nextJoke(): String
+  {static} + loadJokes(): void
+  {static} - isListEmpty(): boolean
+  {static} - getNextJokeFromList(): String
+  {static} - loadJokesFromFile(): void
+  {static} - addDefaultJoke(): void
 }
 
 @enduml

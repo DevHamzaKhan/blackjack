@@ -1,6 +1,9 @@
-// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Hand holder and scoring logic
+// File Name: Person.java
+// Author: Hamza Khan
+// Date: 2025-10-23
+// Description: Hand holder and scoring logic
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Person {
   private ArrayList<Card> hand;
@@ -9,25 +12,37 @@ public class Person {
     this.hand = new ArrayList<Card>();
   }
 
-  public ArrayList<Card> getHand() {
-    return hand;
-  }
-
   public void addCard(Card card) {
     this.hand.add(card);
   }
 
+  public void clearHand() {
+    this.hand.clear();
+  }
+
+  public ArrayList<Card> getHand() {
+    return hand;
+  }
+
+  public boolean isBusted() {
+    return getHandTotal() > 21;
+  }
+
   public int getHandTotal() {
+    int sum = calculateRawTotal();
+    return adjustForAces(sum);
+  }
+
+  private int calculateRawTotal() {
     int total = 0;
-    int aces = 0;
     for (Card card : hand) {
       total += card.getValue();
-      if (card.getRank().equals("A")) {
-        aces++;
-      }
     }
-    // 13) When totals are calculated consider that Ace values 1 or 11. Consider
-    // more than one Ace.
+    return total;
+  }
+
+  private int adjustForAces(int total) {
+    int aces = countAces();
     while (total > 21 && aces > 0) {
       total -= 10;
       aces--;
@@ -35,26 +50,32 @@ public class Person {
     return total;
   }
 
-  public void clearHand() {
-    this.hand.clear();
-  }
-
-  public boolean isBusted() {
-    return getHandTotal() > 21;
+  private int countAces() {
+    int count = 0;
+    for (Card card : hand) {
+      if (card.getRank().equals("A")) {
+        count++;
+      }
+    }
+    return count;
   }
 
   public String getHand(boolean showAllCards) {
-    String result = "";
+    String output = "";
     for (int i = 0; i < hand.size(); i++) {
-      if (i == 0 && !showAllCards) {
-        result += "[Card is face down]";
-      } else {
-        result += hand.get(i).toString();
-      }
+      output += formatCard(i, showAllCards);
       if (i < hand.size() - 1) {
-        result += ", ";
+        output += ", ";
       }
     }
-    return result;
+    return output;
+  }
+
+  private String formatCard(int index, boolean showAll) {
+    if (index == 0 && !showAll) {
+      return "[Card is face down]";
+    }
+    return hand.get(index).toString();
   }
 }
+

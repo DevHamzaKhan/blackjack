@@ -1,4 +1,7 @@
-// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Playing card model
+// File Name: Card.java
+// Author: Hamza Khan
+// Date: 2025-10-23
+// Description: Playing card model
 
 public class Card {
   private String suit;

@@ -1,7 +1,9 @@
-// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Standard 52-card deck
+// File Name: Deck.java
+// Author: Hamza Khan
+// Date: 2025-10-23
+// Description: Standard 52-card deck
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class Deck {
   private ArrayList<Card> cards;
@@ -10,37 +12,42 @@ public class Deck {
     this.cards = new ArrayList<Card>();
   }
 
-  public void createFullDeck() {
-    this.cards.clear();
-    String[] suits = { "♥", "♦", "♣", "♠" };
-    String[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
-    int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
-
-    for (String suit : suits) {
-      for (int i = 0; i < ranks.length; i++) {
-        this.cards.add(new Card(suit, ranks[i], values[i]));
-      }
-    }
-  }
-
-  public void shuffle() {
-    Collections.shuffle(this.cards);
+  public int cardsLeft() {
+    return cards.size();
   }
 
   public Card dealCard() {
     return cards.remove(0);
   }
 
-  public int cardsLeft() {
-    return cards.size();
+  public void shuffle() {
+    Collections.shuffle(this.cards);
+  }
+
+  public void createFullDeck() {
+    this.cards.clear();
+    String[] suits = { "♥", "♦", "♣", "♠" };
+    String[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+    int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
+
+    for (int i = 0; i < suits.length; i++) {
+      String currentSuit = suits[i];
+      addCardsForSuit(currentSuit, ranks, values);
+    }
+  }
+
+  private void addCardsForSuit(String suit, String[] ranks, int[] values) {
+    for (int i = 0; i < ranks.length; i++) {
+      this.cards.add(new Card(suit, ranks[i], values[i]));
+    }
   }
 
   public String toString() {
-    String cardListOutput = "";
-    for (Card aCard : this.cards) {
-      cardListOutput += "\n " + aCard.toString();
+    StringBuilder result = new StringBuilder();
+    for (Card card : this.cards) {
+      result.append("\n ").append(card.toString());
     }
-    cardListOutput += "\nTotal cards: " + this.cards.size();
-    return cardListOutput;
+    result.append("\nTotal cards: ").append(this.cards.size());
+    return result.toString();
   }
 }

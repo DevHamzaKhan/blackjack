@@ -1,37 +1,53 @@
-// Alec Li - ICS4U - Blackjack Project - 2025-10-24 - Static joke provider class
+// File Name: Jokes.java
+// Author: Hamza Khan
+// Date: 2025-10-23
+// Description: Static joke provider class
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.*;
+import java.io.*;
 
 public class Jokes {
-  private static ArrayList<String> jokes = new ArrayList<String>();
+  private static ArrayList<String> jokeList = new ArrayList<String>();
+
+  public static String nextJoke() {
+    if (isListEmpty()) {
+      loadJokes();
+    }
+    return getNextJokeFromList();
+  }
+
+  private static boolean isListEmpty() {
+    return jokeList.isEmpty();
+  }
+
+  private static String getNextJokeFromList() {
+    if (jokeList.isEmpty()) {
+      return "No jokes available.";
+    }
+    return jokeList.remove(0);
+  }
 
   public static void loadJokes() {
-    jokes = new ArrayList<>();
+    jokeList = new ArrayList<>();
     try {
-      File jokesFile = new File("jokes.txt");
-      Scanner fileReader = new Scanner(jokesFile);
-      while (fileReader.hasNextLine()) {
-        String data = fileReader.nextLine();
-        jokes.add(data);
-      }
-      fileReader.close();
-      Collections.shuffle(jokes);
+      loadJokesFromFile();
+      Collections.shuffle(jokeList);
     } catch (FileNotFoundException e) {
-      jokes.add("Why did the chicken cross the road? To get to the other side!");
+      addDefaultJoke();
     }
   }
 
-  public static String nextJoke() {
-    if (jokes.isEmpty()) {
-      loadJokes();
+  private static void loadJokesFromFile() throws FileNotFoundException {
+    File jokesFile = new File("jokes.txt");
+    Scanner scanner = new Scanner(jokesFile);
+    while (scanner.hasNextLine()) {
+      String jokeLine = scanner.nextLine();
+      jokeList.add(jokeLine);
     }
-    if (jokes.isEmpty()) {
-      return "No jokes available.";
-    }
-    return jokes.remove(0);
+    scanner.close();
+  }
+
+  private static void addDefaultJoke() {
+    jokeList.add("Why did the chicken cross the road? To get to the other side!");
   }
 }
