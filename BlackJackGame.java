@@ -1,4 +1,4 @@
-// File Name: GameController.java
+// File Name: BlackJackGame.java
 // Author: Hamza Khan
 // Date: 2025-10-23
 // Description: Main game loop and console I/O
@@ -6,7 +6,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GameController {
+public class BlackJackGame {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     
@@ -67,16 +67,12 @@ public class GameController {
   
   private static void displayInitialDeck(Scanner sc, Deck deck) {
     sc.nextLine();
-    System.out.print("\nEnter to view thedeck...");
-    sc.nextLine();
-    System.out.println("Here is the deck:");
+    System.out.println("\nHere is the deck:");
     System.out.println(deck);
     
     // Shuffle before playing
     deck.shuffle();
     System.out.println("\nDeck has been shuffled.");
-    System.out.print("Enter to view the shuffled deck...");
-    sc.nextLine();
     System.out.println(deck);
   }
   
@@ -271,9 +267,7 @@ public class GameController {
   
   private static void displayDeckAfterRound(Scanner sc, Deck deck) {
     sc.nextLine();
-    System.out.print("\nPress Enter to view end of round deck...");
-    sc.nextLine();
-    System.out.println("End of round deck:");
+    System.out.println("\nEnd of round deck:");
     System.out.println(deck);
   }
   

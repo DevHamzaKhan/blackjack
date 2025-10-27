@@ -43,10 +43,13 @@ public class Deck {
 
   public String toString() {
     StringBuilder result = new StringBuilder();
-    for (Card card : this.cards) {
-      result.append("\n ").append(card.toString());
+    for (int i = 0; i < this.cards.size(); i++) {
+      result.append(this.cards.get(i).toString());
+      if (i < this.cards.size() - 1) {
+        result.append(" | ");
+      }
     }
-    result.append("\nTotal cards: ").append(this.cards.size());
+    result.append("\nNumber of cards in Deck: ").append(this.cards.size());
     return result.toString();
   }
 }
