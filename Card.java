@@ -8,10 +8,20 @@ public class Card {
   private String rank;
   private int value;
 
-  public Card(String suit, String rank, int value) {
+  public Card(String suit, String rank) {
     this.suit = suit;
     this.rank = rank;
-    this.value = value;
+    this.value = calculateValue(rank);
+  }
+
+  private int calculateValue(String rank) {
+    if (rank.equals("A")) {
+      return 11;
+    } else if (rank.equals("J") || rank.equals("Q") || rank.equals("K")) {
+      return 10;
+    } else {
+      return Integer.parseInt(rank);
+    }
   }
 
   public String getSuit() {

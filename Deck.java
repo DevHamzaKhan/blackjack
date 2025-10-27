@@ -28,17 +28,16 @@ public class Deck {
     this.cards.clear();
     String[] suits = { "♥", "♦", "♣", "♠" };
     String[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
-    int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
 
     for (int i = 0; i < suits.length; i++) {
       String currentSuit = suits[i];
-      addCardsForSuit(currentSuit, ranks, values);
+      addCardsForSuit(currentSuit, ranks);
     }
   }
 
-  private void addCardsForSuit(String suit, String[] ranks, int[] values) {
+  private void addCardsForSuit(String suit, String[] ranks) {
     for (int i = 0; i < ranks.length; i++) {
-      this.cards.add(new Card(suit, ranks[i], values[i]));
+      this.cards.add(new Card(suit, ranks[i]));
     }
   }
 

@@ -48,11 +48,11 @@ public class GameController {
   }
   
   private static ArrayList<Player> setupPlayers(Scanner sc) {
-    System.out.print("How many players are playing? ");
-    int numPlayers = Math.max(1, sc.nextInt());
+      System.out.print("How many players are playing? ");
+      int numPlayers = Math.max(1, sc.nextInt());
     ArrayList<Player> playerList = new ArrayList<>();
     for (int i = 0; i < numPlayers; i++) {
-      System.out.print("Player " + (i + 1) + ", how much money are you starting with? ");
+      System.out.print("Player " + (i + 1) + ", how much money are you playing with? ");
       double initialMoney = sc.nextDouble();
       playerList.add(new Player(initialMoney));
     }
@@ -67,14 +67,15 @@ public class GameController {
   
   private static void displayInitialDeck(Scanner sc, Deck deck) {
     sc.nextLine();
-    System.out.print("\nPress Enter to view deck...");
+    System.out.print("\nEnter to view thedeck...");
     sc.nextLine();
     System.out.println("Here is the deck:");
     System.out.println(deck);
     
+    // Shuffle before playing
     deck.shuffle();
     System.out.println("\nDeck has been shuffled.");
-    System.out.print("Press Enter to view shuffled deck...");
+    System.out.print("Enter to view the shuffled deck...");
     sc.nextLine();
     System.out.println(deck);
   }
@@ -99,7 +100,7 @@ public class GameController {
       System.out.println("\nPlayer " + (i + 1) + ", you have $" + String.format("%.2f", currentPlayer.getMoney()) + ", how much would you like to bet?");
       double betAmount = sc.nextDouble();
       while (betAmount > currentPlayer.getMoney() || betAmount <= 0) {
-        System.out.println("Invalid bet. Enter an amount between 0 and " + String.format("%.2f", currentPlayer.getMoney()) + ":");
+        System.out.println("Invalid bet. Please enter an amount between 0 and " + String.format("%.2f", currentPlayer.getMoney()) + ":");
         betAmount = sc.nextDouble();
       }
       bets[i] = betAmount;
@@ -152,6 +153,8 @@ public class GameController {
       while (true) {
         System.out.println("Your hand: " + currentPlayer.getHand(true) + " (" + currentPlayer.getHandTotal() + ")");
         System.out.println("Dealer's hand: " + dealer.getHand(false));
+        
+        // Check for natural blackjack
         if (currentPlayer.getHandTotal() == 21 && currentPlayer.getHand().size() == 2) {
           if (dealer.getHandTotal() == 21 && dealer.getHand().size() == 2) {
             System.out.println("Both you and the dealer have blackjack. Tie.");
@@ -177,9 +180,10 @@ public class GameController {
           break;
         }
         
-        System.out.println("Would you like to (1)Hit or (2)Stand?");
+        System.out.println("Choose (1)Hit or (2)Stand?");
         int playerChoice = sc.nextInt();
         
+        // Handle hit or stand decision
         if (playerChoice == 1) {
           currentPlayer.addCard(deck.dealCard());
           if (currentPlayer.isBusted()) {
@@ -213,6 +217,7 @@ public class GameController {
     
     System.out.println("\nDealer's cards: " + dealer.getHand(true) + " (" + dealer.getHandTotal() + ")");
     
+    // Dealer plays according to casino rules
     while (dealerActive && dealer.getHandTotal() < 17) {
       dealer.addCard(deck.dealCard());
       System.out.println("Dealer hits and gets: " + dealer.getHand().get(dealer.getHand().size() - 1));
@@ -226,7 +231,7 @@ public class GameController {
       if (currentPlayer.getBet() <= 0) continue;
       
       if (currentPlayer.isBusted()) {
-        System.out.println("Player " + (i + 1) + ": Dealer wins.");
+        System.out.println("Player " + (i + 1) + ": The dealer wins.");
         currentPlayer.setMoney(currentPlayer.getMoney() - currentPlayer.getBet());
         System.out.println(Jokes.nextJoke());
       } else if (!inContention[i]) {
@@ -236,13 +241,13 @@ public class GameController {
         System.out.println(Jokes.nextJoke());
       } else {
         if (currentPlayer.getHandTotal() > dealer.getHandTotal()) {
-          System.out.println("Player " + (i + 1) + ": You win the hand!");
+            System.out.println("Player " + (i + 1) + ": You win!");
           currentPlayer.setMoney(currentPlayer.getMoney() + currentPlayer.getBet());
           System.out.println(Jokes.nextJoke());
         } else if (currentPlayer.getHandTotal() == dealer.getHandTotal()) {
           System.out.println("Player " + (i + 1) + ": Tie.");
         } else {
-          System.out.println("Player " + (i + 1) + ": You lose the hand.");
+            System.out.println("Player " + (i + 1) + ": You lose.");
           currentPlayer.setMoney(currentPlayer.getMoney() - currentPlayer.getBet());
           System.out.println(Jokes.nextJoke());
         }

@@ -8,19 +8,20 @@ class Deck {
   + shuffle(): void
   + createFullDeck(): void
   + toString(): String
-  - addCardsForSuit(String suit, String[] ranks, int[] values): void
+  - addCardsForSuit(String suit, String[] ranks): void
 }
 
 class Card {
   - String suit
   - String rank
   - int value
-  + Card(String suit, String rank, int value)
+  + Card(String suit, String rank)
   + getSuit(): String
   + getRank(): String
   + getValue(): int
   + setValue(int value): void
   + toString(): String
+  - calculateValue(String rank): int
 }
 
 class Dealer {
