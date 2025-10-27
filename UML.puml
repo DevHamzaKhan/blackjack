@@ -23,9 +23,9 @@ class Card {
   + toString(): String
 }
 
-class Person {
+class Dealer {
   - java.util.ArrayList<Card> hand
-  + Person()
+  + Dealer()
   + addCard(Card card): void
   + clearHand(): void
   + getHand(): java.util.ArrayList<Card>
@@ -38,7 +38,7 @@ class Person {
   - formatCard(int index, boolean showAll): String
 }
 
-class Player extends Person {
+class Player extends Dealer {
   - boolean isStanding
   - double bet
   - double money
@@ -52,9 +52,6 @@ class Player extends Person {
   + setMoney(double money): void
 }
 
-class Dealer extends Person {
-  + Dealer()
-}
 
 class Jokes {
   {static} - java.util.ArrayList<String> jokeList

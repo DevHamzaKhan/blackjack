@@ -3,7 +3,7 @@
 // Date: 2025-10-23
 // Description: Tracks player money, bet amounts, and standing status during gameplay
 
-public class Player extends Person {
+public class Player extends Dealer {
   private boolean isStanding;
   private double bet;
   private double money;
