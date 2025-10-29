@@ -1,5 +1,6 @@
 @startuml
 
+
 class Deck {
   - java.util.ArrayList<Card> cards
   + Deck()

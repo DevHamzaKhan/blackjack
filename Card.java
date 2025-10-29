@@ -4,6 +4,7 @@
 // Description: Represents a playing card with suit, rank, and blackjack value
 
 public class Card {
+ 
   private String suit;
   private String rank;
   private int value;

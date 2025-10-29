@@ -3,8 +3,8 @@
 // Date: 2025-10-23
 // Description: Main game loop and console I/O
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+ 
 
 public class BlackJackGame {
   public static void main(String[] args) {
@@ -50,18 +50,20 @@ public class BlackJackGame {
     sc.close();
   }
   
+  // Sets up players by asking for number of players and their starting money
   private static ArrayList<Player> setupPlayers(Scanner sc) {
       System.out.print("How many players are playing? ");
       int numPlayers = Math.max(1, sc.nextInt());
     ArrayList<Player> playerList = new ArrayList<>();
     for (int i = 0; i < numPlayers; i++) {
-      System.out.print("Player " + (i + 1) + ", how much money are you playing with? ");
+      System.out.print("Player " + (i + 1) + ", enter your starting amount of money: ");
       double initialMoney = sc.nextDouble();
       playerList.add(new Player(initialMoney));
     }
     return playerList;
   }
   
+  // Creates and initializes a new deck of cards
   private static Deck initializeDeck() {
     Deck deck = new Deck();
     deck.createFullDeck();
@@ -79,6 +81,7 @@ public class BlackJackGame {
     System.out.println(deck);
   }
   
+  // Checks if any player still has money to continue playing
   private static boolean hasAnyPlayerWithMoney(ArrayList<Player> playerList) {
     for (Player currentPlayer : playerList) {
       if (currentPlayer.getMoney() > 0) {
@@ -88,6 +91,7 @@ public class BlackJackGame {
     return false;
   }
   
+  // Collects bet amounts from all players with validation
   private static double[] collectBetsFromPlayers(Scanner sc, ArrayList<Player> playerList) {
     double[] bets = new double[playerList.size()];
     for (int i = 0; i < playerList.size(); i++) {
@@ -111,12 +115,14 @@ public class BlackJackGame {
     return deck.cardsLeft() < 10;
   }
   
+  // Creates a new full deck and shuffles it when running low on cards
   private static void resetDeck(Deck deck) {
     System.out.println("New deck is being used.");
     deck.createFullDeck();
     deck.shuffle();
   }
   
+  // Deals initial cards to dealer and all players (2 cards each)
   private static void dealCards(Dealer dealer, ArrayList<Player> playerList, Deck deck, double[] bets) {
     dealer.clearHand();
     for (int i = 0; i < playerList.size(); i++) {
@@ -137,6 +143,7 @@ public class BlackJackGame {
     }
   }
   
+  // Manages each player's turn with hit/stand options and bust detection
   private static boolean[] playPlayerTurns(Scanner sc, Dealer dealer, ArrayList<Player> playerList, Deck deck) {
     boolean[] inContention = new boolean[playerList.size()];
     
@@ -173,13 +180,13 @@ public class BlackJackGame {
         }
         
         if (currentPlayer.getHandTotal() == 21 && currentPlayer.getHand().size() > 2) {
-          System.out.println("You have 21.");
+          System.out.println("Perfect 21!");
           currentPlayer.stand();
           inContention[i] = true;
           break;
         }
         
-        System.out.println("Choose (1)Hit or (2)Stand?");
+        System.out.print("What would you like to do? [1] HIT  or  [2] STAND: ");
         int playerChoice = sc.nextInt();
         
         // Handle hit or stand decision
@@ -204,6 +211,7 @@ public class BlackJackGame {
     return inContention;
   }
   
+  // Dealer plays according to casino rules (hits on <17, stands on 17+)
   private static void dealerPlays(Dealer dealer, ArrayList<Player> playerList, Deck deck, boolean[] inContention) {
     boolean dealerActive = false;
     for (int i = 0; i < playerList.size(); i++) {
@@ -224,6 +232,7 @@ public class BlackJackGame {
     }
   }
   
+  // Determines winners/losers and updates player money based on results
   private static void determineRoundResults(Dealer dealer, ArrayList<Player> playerList, boolean[] inContention) {
     for (int i = 0; i < playerList.size(); i++) {
       Player currentPlayer = playerList.get(i);
@@ -254,6 +263,7 @@ public class BlackJackGame {
     }
   }
   
+  // Resets all hands and game state for the next round
   private static void cleanupRound(Dealer dealer, ArrayList<Player> playerList) {
     dealer.clearHand();
     for (Player p : playerList) {

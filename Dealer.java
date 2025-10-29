@@ -4,6 +4,7 @@
 // Description: Manages card hand, calculates totals with ace adjustment, and checks bust status
 
 import java.util.*;
+ 
 
 public class Dealer {
   private ArrayList<Card> hand;
@@ -73,7 +74,7 @@ public class Dealer {
 
   private String formatCard(int index, boolean showAll) {
     if (index == 0 && !showAll) {
-      return "[Card is face down]";
+      return "[Face down card]";
     }
     return hand.get(index).toString();
   }
